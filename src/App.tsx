@@ -1,20 +1,24 @@
-import { useEffect, useState } from 'react';
-import { FaShuffle } from 'react-icons/fa6';
-import PuzzleBoard from './components/PuzzleBoard';
-import { createInitialState, isSolvable, shufflePuzzle } from './utils/puzzleUtils';
+import { useEffect, useState } from "react";
+import { FaShuffle } from "react-icons/fa6";
+import PuzzleBoard from "./components/PuzzleBoard";
+import {
+  createInitialState,
+  isSolvable,
+  shufflePuzzle,
+} from "./utils/puzzleUtils";
 
 function App() {
   const [puzzleState, setPuzzleState] = useState(() => {
-    const savedState = localStorage.getItem('puzzleState');
+    const savedState = localStorage.getItem("puzzleState");
     return savedState ? JSON.parse(savedState) : createInitialState();
   });
   const [moveCount, setMoveCount] = useState(() => {
-    return parseInt(localStorage.getItem('moveCount') || '0');
+    return parseInt(localStorage.getItem("moveCount") || "0");
   });
 
   useEffect(() => {
-    localStorage.setItem('puzzleState', JSON.stringify(puzzleState));
-    localStorage.setItem('moveCount', moveCount.toString());
+    localStorage.setItem("puzzleState", JSON.stringify(puzzleState));
+    localStorage.setItem("moveCount", moveCount.toString());
   }, [puzzleState, moveCount]);
 
   const handleShuffle = () => {
@@ -28,11 +32,11 @@ function App() {
 
   const handleMove = (newState: number[]) => {
     setPuzzleState(newState);
-    setMoveCount(prevCount => prevCount + 1);
+    setMoveCount((prevCount) => prevCount + 1);
   };
 
   const handleSolve = () => {
-    alert('Congratulations! You solved the puzzle!');
+    alert("Congratulations! You solved the puzzle!");
     handleShuffle();
   };
 
@@ -49,7 +53,9 @@ function App() {
             <span className="text-[13px]">Shuffle</span>
           </button>
           <div className="w-[89px] h-[32px] bg-white border border-[#F2E9E9] rounded-lg flex items-center justify-center">
-            <span className="font-medium text-[13px]">Moves: {moveCount.toString().padStart(2, '0')}</span>
+            <span className="font-medium text-[13px]">
+              Moves: {moveCount.toString().padStart(2, "0")}
+            </span>
           </div>
         </div>
       </div>
