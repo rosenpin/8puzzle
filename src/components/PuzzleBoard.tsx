@@ -21,15 +21,17 @@ const PuzzleBoard: React.FC<PuzzleBoardProps> = ({ puzzleState, onMove, onSolve 
   };
 
   return (
-    <div className="grid grid-cols-3 gap-1 bg-gray-300 p-1 rounded">
-      {puzzleState.map((value, index) => (
-        <PuzzlePiece
-          key={value}
-          value={value}
-          index={index}
-          onClick={() => handlePieceClick(index)}
-        />
-      ))}
+    <div className="rounded-lg border border-[#F6F0F0]">
+      <div className="grid grid-cols-3 bg-white gap-1 rounded-lg p-1">
+        {puzzleState.map((value, index) => (
+          <PuzzlePiece
+            key={value}
+            value={value}
+            index={index}
+            onClick={() => handlePieceClick(index)}
+          />
+        ))}
+      </div>
     </div>
   );
 };

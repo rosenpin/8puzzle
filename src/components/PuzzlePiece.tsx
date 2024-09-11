@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 
 interface PuzzlePieceProps {
   value: number;
@@ -7,29 +7,65 @@ interface PuzzlePieceProps {
 }
 
 const PuzzlePiece: React.FC<PuzzlePieceProps> = ({ value, index, onClick }) => {
-  const row = Math.floor(index / 3);
-  const col = index % 3;
+  const [croppedImageUrl, setCroppedImageUrl] = useState<string | null>(null);
+  const isEmptyPiece = value === 8;
 
-  const style: React.CSSProperties = {
-    position: 'absolute',
-    top: `${row * 33.33}%`,
-    left: `${col * 33.33}%`,
-    width: '33.33%',
-    height: '33.33%',
-    transition: 'all 0.3s ease-in-out',
-  };
+  useEffect(() => {
+    const cropAndSetImage = async () => {
+      const imageUrl =
+        "https://as1.ftcdn.net/v2/jpg/03/15/34/90/1000_F_315349043_6ohfFyx37AFusCKZtGQtJR0jqUxhb25Y.jpg";
+      const img = new Image();
+      img.crossOrigin = "anonymous";
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        const size = Math.min(img.width, img.height);
+        canvas.width = size;
+        canvas.height = size;
 
-  if (value === 8) {
-    return <div style={style} className="bg-gray-300" />;
-  }
+        ctx?.drawImage(
+          img,
+          (img.width - size) / 2,
+          (img.height - size) / 2,
+          size,
+          size,
+          0,
+          0,
+          size,
+          size
+        );
+
+        setCroppedImageUrl(canvas.toDataURL());
+      };
+      img.src = imageUrl;
+    };
+
+    cropAndSetImage();
+  }, []);
+
+  const style: React.CSSProperties = croppedImageUrl
+    ? {
+        backgroundImage: `url(${croppedImageUrl})`,
+        backgroundSize: "300% 300%",
+        backgroundPosition: `${(value % 3) * 50}% ${
+          Math.floor(value / 3) * 50
+        }%`,
+      }
+    : {};
 
   return (
     <div
-      style={style}
-      className="bg-blue-500 flex items-center justify-center text-white font-bold text-2xl cursor-pointer hover:bg-blue-600"
+      className={`w-full h-full flex items-center justify-center text-2xl font-bold cursor-pointer rounded-md ${
+        isEmptyPiece ? "bg-white" : ""
+      }`}
       onClick={onClick}
+      style={
+        isEmptyPiece
+          ? { width: "165px", height: "165px", borderRadius: "5px" }
+          : { ...style, width: "165px", height: "165px", borderRadius: "5px" }
+      }
     >
-      {value + 1}
+      {isEmptyPiece}
     </div>
   );
 };
