@@ -42,7 +42,7 @@ function App() {
 
   return (
     <div className="flex flex-col min-h-screen items-center justify-center bg-[#FBF9F9]">
-      <div className="flex justify-between w-[511px] mb-4">
+      <div className="flex justify-between w-[511px] mb-4 pt-2">
         <h1 className="text-[42px] font-bold text-[#472C35] font-['DM_Sans'] font-[700]">8-Puzzle</h1>
         <div className="flex items-center">
           <button
