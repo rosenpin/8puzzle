@@ -63,9 +63,7 @@ const PuzzlePiece: React.FC<PuzzlePieceProps> = ({ value, index, onClick }) => {
       }`}
       onClick={onClick}
       style={isEmptyPiece ? {} : style}
-    >
-      {isEmptyPiece && ""}
-    </motion.div>
+    />
   );
 };
 
