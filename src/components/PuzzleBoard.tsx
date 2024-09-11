@@ -15,7 +15,9 @@ const PuzzleBoard: React.FC<PuzzleBoardProps> = ({ puzzleState, onMove, onSolve 
       [newState[index], newState[emptyIndex]] = [newState[emptyIndex], newState[index]];
       onMove(newState);
       if (isSolved(newState)) {
-        onSolve();
+        setTimeout(() => {
+          onSolve();
+        }, 400);
       }
     }
   };

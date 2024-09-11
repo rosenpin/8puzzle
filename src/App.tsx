@@ -36,24 +36,24 @@ function App() {
   };
 
   const handleSolve = () => {
-    alert("Congratulations! You solved the puzzle!");
+    alert("Congratulations! You solved the puzzle with " + (moveCount+1) + " moves!");
     handleShuffle();
   };
 
   return (
     <div className="flex flex-col min-h-screen items-center justify-center bg-[#FBF9F9]">
       <div className="flex justify-between w-[511px] mb-4">
-        <h1 className="text-[42px] font-bold text-[#472C35]">8-Puzzle</h1>
+        <h1 className="text-[42px] font-bold text-[#472C35] font-['DM_Sans'] font-[700]">8-Puzzle</h1>
         <div className="flex items-center">
           <button
-            className="w-[89px] h-[32px] bg-[#FFC4D8B2] hover:bg-opacity-80 text-[#D72A6E] font-medium rounded-lg mr-2 flex items-center justify-center"
+            className="w-[89px] h-[32px] bg-[#FFC4D8B2] font-['DM_Sans'] hover:bg-opacity-80 text-[#D72A6E] font-medium rounded-lg mr-2 flex items-center justify-center"
             onClick={handleShuffle}
           >
             <FaShuffle className="w-[14px] h-[12px] mr-2" />
             <span className="text-[13px]">Shuffle</span>
           </button>
           <div className="w-[89px] h-[32px] bg-white border border-[#F2E9E9] rounded-lg flex items-center justify-center">
-            <span className="font-medium text-[13px]">
+            <span className="font-['DM_Sans'] font-[500] text-[13px]">
               Moves: {moveCount.toString().padStart(2, "0")}
             </span>
           </div>
