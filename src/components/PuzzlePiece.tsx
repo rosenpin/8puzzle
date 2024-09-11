@@ -14,7 +14,7 @@ const PuzzlePiece: React.FC<PuzzlePieceProps> = ({ value, index, onClick }) => {
   useEffect(() => {
     const cropAndSetImage = async () => {
       const imageUrl =
-        "https://as1.ftcdn.net/v2/jpg/03/15/34/90/1000_F_315349043_6ohfFyx37AFusCKZtGQtJR0jqUxhb25Y.jpg";
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Wonderful_Nature_Beauty.jpg/800px-Wonderful_Nature_Beauty.jpg?20170602051817";
       const img = new Image();
       img.crossOrigin = "anonymous";
       img.onload = () => {
