@@ -58,7 +58,7 @@ const PuzzlePiece: React.FC<PuzzlePieceProps> = ({ value, index, onClick }) => {
     <motion.div
       layout
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
-      className={`w-[165px] h-[165px]  flex items-center justify-center text-2xl font-bold cursor-pointer rounded-md ${
+      className={`w-[165px] h-[165px] flex items-center justify-center text-2xl font-bold cursor-pointer rounded-[5px] ${
         isEmptyPiece ? "bg-white z-0" : "z-10"
       }`}
       onClick={onClick}
